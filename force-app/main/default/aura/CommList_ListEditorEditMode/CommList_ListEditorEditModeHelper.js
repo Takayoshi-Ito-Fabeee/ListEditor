@@ -605,5 +605,24 @@
   },
   convertIntToString: function(number) {
     return number > 9 ? number.toString() : '0' + number.toString();
+  },
+  //SortableJS
+  updateOrderAfterDrag: function(component, oldIndex, newIndex) {
+    let records = component.get("v.records");
+    
+    // 移動させたレコードをリストから一旦削除し、新しい位置に挿入
+    let movedItem = records.splice(oldIndex, 1)[0];
+    records.splice(newIndex, 0, movedItem);
+
+    // 順序フィールドがある場合、その値を更新
+    let orderField = component.get("v.orderField");
+    if (orderField) {
+        records.forEach((record, index) => {
+            record[orderField] = index + 1;  // 新しい順序をセット
+        });
+    }
+
+    // 更新されたリストをセット
+    component.set("v.records", records);
   }
 });

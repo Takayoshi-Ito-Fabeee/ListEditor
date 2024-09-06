@@ -447,7 +447,7 @@ public class CommList_RelatedListEditorCCTest {
     insert lstContact;
 
     String objectName = 'Contact';
-    String fields = 'Id,Name, MailingAddress, RecordTypeid, AccountId, CreatedDate,OwnerId, DoNotCall, CleanStatus';
+    String fields = 'Id,Name, MailingAddress, RecordTypeid, AccountId, CreatedDate,OwnerId, DoNotCall';
     String limitRecs = '10';
     String recordId = acc.Id;
     String sObjectName = 'Account';

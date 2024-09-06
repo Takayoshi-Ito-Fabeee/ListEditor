@@ -268,6 +268,21 @@
     parentDiv.setAttribute('draggable', false);
   },
   //End DUC Added
+
+  //SortableJS
+  initializeSortable: function(component, event, helper) {
+    // dataGridBodyの要素を取得してSortableを適用
+    let tbody = component.find("dataGridBody").getElement();
+    let sortable = Sortable.create(tbody, {
+        animation: 150,
+        handle: ".drag-handle", // ドラッグ可能な要素に限定
+        onEnd: function(evt) {
+            helper.updateOrderAfterDrag(component, evt.oldIndex, evt.newIndex);
+        }
+    });
+  },
+  //End SortableJS
+  
   save: function(component, event, helper) {
     helper.isLoading(component, true);
 

@@ -54,6 +54,8 @@
   <aura:handler name="createRecord" event="c:CommList_CreateRecordEvent" action="{!c.showCreateRecordPopup}" />
   <aura:method name="refreshEditMode" action="{!c.refreshEditMode}" />
   <aura:registerEvent name="refreshRecordList" type="c:CommList_RefreshRecordListEvent" />
+  <!-- SortableJS -->
+  <ltng:require scripts="{!$Resource.SortableJS}" afterScriptsLoaded="{!c.initializeSortable}" />
 
   <div class="slds-modal__container">
     <header class="slds-modal__header">
@@ -194,24 +196,13 @@
                         <th scope="col" class="{!v.displaySaveStatus ? 'shrink' : 'slds-hide'}"></th>
                       </tr>
                     </thead>
-                    <tbody
-                      aura:id="dataGridBody"
-                      class="dataGridBody"
-                      ondragover="{!c.cancel}"
-                      ondragenter="{!c.cancel}"
-                      ondrop="{!c.drop}"
-                    >
+                    <tbody aura:id="dataGridBody" class="dataGridBody">
                       <aura:iteration items="{!v.records}" var="row" indexVar="indexRow">
-                        <tr
-                          class="{!row.isVisible ? 'editer-row' : 'slds-hide editer-row'}"
-                          ondragstart="{!c.dragstart}"
-                          data-drag-id="{!indexRow}"
-                        >
-                          <td data-drag-id="{!indexRow}">
-														<div class="row" onmouseover="{!c.mouseOverDragIcon}" onmouseout="{!c.mouseOutDragIcon}" data-drag-id="{!indexRow}">
-															<lightning:buttonIcon alternativeText="" iconClass="" variant="border" type="button" iconName="utility:apps" size="medium"></lightning:buttonIcon>
-														</div>
-													</td>
+                        <tr class="{!row.isVisible ? 'editer-row' : 'slds-hide editer-row'}" data-drag-id="{!indexRow}">
+                          <!-- ドラッグハンドルの追加 -->
+                          <td class="drag-handle" data-drag-id="{!indexRow}">
+                            <lightning:buttonIcon alternativeText="Drag" iconClass="" variant="border" type="button" iconName="utility:apps" size="medium" />
+                          </td>
                           <aura:iteration items="{!row.cells}" var="cell" indexVar="colIndex">
                             <aura:if isTrue="{!v.isScrollable}">
                               <td
