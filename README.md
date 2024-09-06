@@ -2,7 +2,7 @@
 
 ## Installation
 
-<a href="https://githubsfdeploy.herokuapp.com?owner=Takayoshi-Ito-Fabeee&repo=ListEditor_Fabeee&ref=v2.01">
+<a href="https://githubsfdeploy.herokuapp.com?owner=Takayoshi-Ito-Fabeee&repo=ListEditor&ref=v2.02">
   <img alt="Deploy to Salesforce"
        src="https://raw.githubusercontent.com/afawcett/githubsfdeploy/master/deploy.png">
 </a>
